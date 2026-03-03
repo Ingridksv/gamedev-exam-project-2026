@@ -42,6 +42,7 @@ public class HeroKnight : MonoBehaviour {
         m_health = GetComponent<Health>();
         m_health.onHurt.AddListener(OnHurt);
         m_health.onDeath.AddListener(OnDeath);
+        m_attackHitbox = GetComponentInChildren<AttackHitbox>();
     }
 
     // Update is called once per frame
@@ -65,15 +66,15 @@ public class HeroKnight : MonoBehaviour {
         float inputY = Input.GetAxis("Vertical");
 
         // Swap direction of sprite depending on walk direction
+        
         if (inputX > 0)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.localScale = new Vector3(1, 1, 1);
             m_facingDirection = 1;
         }
-            
         else if (inputX < 0)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
             m_facingDirection = -1;
         }
 
