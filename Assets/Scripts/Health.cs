@@ -24,6 +24,7 @@ public class Health : MonoBehaviour, IAttackable
         if (m_currentHealth <= 0)
             onDeath.Invoke();
     }
+    
 
     public void Heal(int amount)
     {

@@ -7,7 +7,7 @@ public class HeroKnight : MonoBehaviour {
    // [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
-    [SerializeField] GameObject m_slideDust;
+
 
     private Animator            m_animator;
     private Rigidbody2D         m_body2d;
@@ -27,6 +27,7 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollCurrentTime;
     private Health              m_health;
     private AttackHitbox       m_attackHitbox;
+    
 
 
     // Use this for initialization
@@ -50,7 +51,7 @@ public class HeroKnight : MonoBehaviour {
     {
         // Increase timer that controls attack combo
         m_timeSinceAttack += Time.deltaTime;
-
+        
         // Increase timer that checks roll duration
         if(m_rolling)
             m_rollCurrentTime += Time.deltaTime;
@@ -82,25 +83,22 @@ public class HeroKnight : MonoBehaviour {
         if (!m_rolling )
             // m_body2d.linearVelocity = new Vector2(inputX * m_speed, m_body2d.linearVelocity.y);
             m_body2d.linearVelocity = new Vector2(inputX * m_speed, inputY * m_speed);
-
-        //Set AirSpeed in animator
-        m_animator.SetFloat("AirSpeedY", m_body2d.linearVelocity.y);
-
+        
         // -- Handle Animations --
 
-        //Death
-        if (Input.GetKeyDown("e") && !m_rolling)
-        {
-            m_health.TakeDamage(999);
-        }
-            
-        //Hurt
-        else if (Input.GetKeyDown("q") && !m_rolling){
-            m_health.TakeDamage(10);
-        }
+        // //Death
+        // if (Input.GetKeyDown("e") && !m_rolling)
+        // {
+        //     m_health.TakeDamage(999);
+        // }
+        //     
+        // //Hurt
+        // else if (Input.GetKeyDown("q") && !m_rolling){
+        //     m_health.TakeDamage(10);
+        // }
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+       if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_currentAttack++;
 
@@ -178,7 +176,10 @@ public class HeroKnight : MonoBehaviour {
     
         // Disable player input on death
         this.enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        m_body2d.linearVelocity = Vector2.zero;
     }
+    
     void EnableHitbox()
     {
         m_attackHitbox.EnableHitbox();
