@@ -7,6 +7,7 @@ public class HeroKnight : MonoBehaviour {
    // [SerializeField] float      m_jumpForce = 7.5f;
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
+    [SerializeField] Transform healthBar;
 
 
     private Animator            m_animator;
@@ -27,6 +28,7 @@ public class HeroKnight : MonoBehaviour {
     private float               m_rollCurrentTime;
     private Health              m_health;
     private AttackHitbox       m_attackHitbox;
+    Vector3 healthBarScale;
     
 
 
@@ -44,6 +46,7 @@ public class HeroKnight : MonoBehaviour {
         m_health.onHurt.AddListener(OnHurt);
         m_health.onDeath.AddListener(OnDeath);
         m_attackHitbox = GetComponentInChildren<AttackHitbox>();
+        healthBarScale = healthBar.localScale;
     }
 
     // Update is called once per frame
@@ -72,11 +75,13 @@ public class HeroKnight : MonoBehaviour {
         {
             transform.localScale = new Vector3(1, 1, 1);
             m_facingDirection = 1;
+            healthBar.localScale = new Vector3(Mathf.Abs(healthBarScale.x), healthBarScale.y, healthBarScale.z);
         }
         else if (inputX < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
             m_facingDirection = -1;
+            healthBar.localScale = new Vector3(-Mathf.Abs(healthBarScale.x), healthBarScale.y, healthBarScale.z);
         }
 
         // Move

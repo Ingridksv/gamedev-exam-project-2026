@@ -8,8 +8,9 @@ public class Health : MonoBehaviour, IAttackable
 
     public UnityEvent onDeath;
     public UnityEvent onHurt;
+    public UnityEvent onHeal;
 
-    void Start()
+    void Awake()
     {
         m_currentHealth = maxHealth;
     }
@@ -29,6 +30,7 @@ public class Health : MonoBehaviour, IAttackable
     public void Heal(int amount)
     {
         m_currentHealth = Mathf.Min(m_currentHealth + amount, maxHealth);
+        onHeal.Invoke();
     }
 
     public int GetHealth() => m_currentHealth;
