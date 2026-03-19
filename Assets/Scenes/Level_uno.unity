@@ -314,6 +314,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: m_bossPrefab
+      value: 
+      objectReference: {fileID: 2275426829838971273, guid: 2fdc0a9d8a8638946929ae25fb872fad, type: 3}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: m_waves.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
       propertyPath: 'm_spawnPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1585076114}
@@ -325,6 +333,26 @@ PrefabInstance:
       propertyPath: 'm_spawnPoints.Array.data[2]'
       value: 
       objectReference: {fileID: 1954199655}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: m_waves.Array.data[3].waveName
+      value: FinalWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: m_waves.Array.data[3].baseEnemyCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: m_waves.Array.data[3].enemyPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: 'm_waves.Array.data[3].enemyPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2275426829838971273, guid: 2fdc0a9d8a8638946929ae25fb872fad, type: 3}
+    - target: {fileID: 8225259367913408307, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
+      propertyPath: 'm_waves.Array.data[3].enemyPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2275426829838971273, guid: 2fdc0a9d8a8638946929ae25fb872fad, type: 3}
     - target: {fileID: 8796788945238350947, guid: ed814ce0ddb352d498a96f050436f72c, type: 3}
       propertyPath: m_Name
       value: WaveSpawner
@@ -409,10 +437,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 130547132142609489, guid: 064ae2b5e461a7243ac5424e32db9fdc, type: 3}
-      propertyPath: orthographic size
-      value: 3.81
-      objectReference: {fileID: 0}
     - target: {fileID: 4554037882631567228, guid: 064ae2b5e461a7243ac5424e32db9fdc, type: 3}
       propertyPath: m_Name
       value: HeroKnight - New

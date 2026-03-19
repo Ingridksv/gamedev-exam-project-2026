@@ -17,7 +17,11 @@ public class Health : MonoBehaviour, IAttackable
 
     public void TakeDamage(int amount)
     {
-        if (m_currentHealth <= 0) return; // already dead
+        if (m_currentHealth <= 0) return;
+
+        HeroKnight hero = GetComponent<HeroKnight>();
+        if (hero != null)
+            amount = Mathf.RoundToInt(amount * hero.GetDamageMultiplier());
 
         m_currentHealth -= amount;
         onHurt.Invoke();
