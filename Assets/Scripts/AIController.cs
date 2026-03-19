@@ -44,7 +44,10 @@ public class AIController : MonoBehaviour
     {
         float dir = m_player.position.x > transform.position.x ? 1f : -1f;
         if (invertScale) dir = -dir;
-        transform.localScale = new Vector3(dir, 1f, 1f);
+
+        Vector3 scale = transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * dir;
+        transform.localScale = scale;
     }
 
     public Vector2 DirectionToPlayer()

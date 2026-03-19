@@ -17,6 +17,7 @@ public class WaveSpawner : MonoBehaviour
     [SerializeField] Transform[] m_spawnPoints;
     [SerializeField] float m_timeBetweenWaves = 5f;
     [SerializeField] float m_enemyCountMultiplier = 1.5f; // exponential growth
+    [SerializeField] GameObject m_bossPrefab;
 
     private int m_currentWave = 0;
     private List<GameObject> m_aliveEnemies = new List<GameObject>();
@@ -48,18 +49,28 @@ public class WaveSpawner : MonoBehaviour
         yield return new WaitForSeconds(m_timeBetweenWaves);
 
         Wave wave = m_waves[m_currentWave];
+        bool isFinalWave = m_currentWave == m_waves.Length - 1;
 
-        // Exponential enemy count — each wave has more enemies
-        int enemyCount = Mathf.RoundToInt(
-            wave.baseEnemyCount * Mathf.Pow(m_enemyCountMultiplier, m_currentWave)
-        );
-
-        Debug.Log($"Wave {m_currentWave + 1} starting — spawning {enemyCount} enemies");
-
-        for (int i = 0; i < enemyCount; i++)
+        if (isFinalWave && m_bossPrefab != null)
         {
-            SpawnEnemy(wave);
-            yield return new WaitForSeconds(wave.timeBetweenSpawns);
+            Debug.Log("Final wave — spawning boss!");
+            Transform spawnPoint = m_spawnPoints[Random.Range(0, m_spawnPoints.Length)];
+            GameObject boss = Instantiate(m_bossPrefab, spawnPoint.position, Quaternion.identity);
+            m_aliveEnemies.Add(boss);
+        }
+        else
+        {
+            int enemyCount = Mathf.RoundToInt(
+                wave.baseEnemyCount * Mathf.Pow(m_enemyCountMultiplier, m_currentWave)
+            );
+
+            Debug.Log($"Wave {m_currentWave + 1} starting — spawning {enemyCount} enemies");
+
+            for (int i = 0; i < enemyCount; i++)
+            {
+                SpawnEnemy(wave);
+                yield return new WaitForSeconds(wave.timeBetweenSpawns);
+            }
         }
 
         m_currentWave++;

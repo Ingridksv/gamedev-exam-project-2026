@@ -8,6 +8,7 @@ public class HeroKnight : MonoBehaviour {
     [SerializeField] float      m_rollForce = 6.0f;
     [SerializeField] bool       m_noBlood = false;
     [SerializeField] Transform healthBar;
+    [SerializeField] float m_attackCooldown = 0.5f;
 
 
     private Animator            m_animator;
@@ -29,6 +30,8 @@ public class HeroKnight : MonoBehaviour {
     private Health              m_health;
     private AttackHitbox       m_attackHitbox;
     Vector3 healthBarScale;
+    private bool  m_isBlocking = false;
+
     
 
 
@@ -103,7 +106,7 @@ public class HeroKnight : MonoBehaviour {
         // }
 
         //Attack
-       if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+       if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > m_attackCooldown && !m_rolling)
         {
             m_currentAttack++;
 
@@ -127,10 +130,13 @@ public class HeroKnight : MonoBehaviour {
         {
             m_animator.SetTrigger("Block");
             m_animator.SetBool("IdleBlock", true);
+            m_isBlocking = true;
         }
 
-        else if (Input.GetMouseButtonUp(1))
+        else if (Input.GetMouseButtonUp(1)){
             m_animator.SetBool("IdleBlock", false);
+            m_isBlocking = false;
+        }
 
         // // Roll
         // else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
@@ -193,5 +199,10 @@ public class HeroKnight : MonoBehaviour {
     void DisableHitbox()
     {
         m_attackHitbox.DisableHitbox();
+    }
+    
+    public float GetDamageMultiplier()
+    {
+        return m_isBlocking ? 0.25f : 1.0f;
     }
 }

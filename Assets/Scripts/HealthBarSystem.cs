@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class HealthBarSystem : MonoBehaviour
 {
@@ -15,13 +17,13 @@ public class HealthBarSystem : MonoBehaviour
     // Caches
     Health health;
     Image image;
-    Text text;
+    TMP_Text text;
 
     private void Start()
     {
         health = GetComponentInParent<Health>();
         image = GetComponentInChildren<Image>();
-        text = GetComponentInChildren<Text>();
+        text = GetComponentInChildren<TMP_Text>();
     
         Debug.Log("Health found: " + (health != null));
         Debug.Log("Image found: " + (image != null));
