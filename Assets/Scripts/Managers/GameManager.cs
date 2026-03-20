@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Debug.Log("GameManager is active");
+
+        UIManager.Instance.UpdateScore(score);
     }
     
     void Awake()
@@ -29,13 +31,8 @@ public class GameManager : MonoBehaviour
     {
         score += amount;
         Debug.Log("Score: "+ score);
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AddScore(10);
-        }
+        
+        UIManager.Instance.UpdateScore(score);
     }
 
     public void GameOver()
@@ -44,6 +41,8 @@ public class GameManager : MonoBehaviour
         
         gameEnded = true;
         Time.timeScale = 0f;
+        
+        UIManager.Instance.ShowGameOver();
         Debug.Log("GAME OVER");
     }
 
@@ -53,6 +52,8 @@ public class GameManager : MonoBehaviour
         
         gameEnded = true;
         Time.timeScale = 0f;
+        
+        UIManager.Instance.ShowWin();
         Debug.Log("YOU WIN");
     }
 

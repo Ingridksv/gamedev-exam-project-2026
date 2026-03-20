@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 61346583712760016}
   - component: {fileID: 8632853140881000554}
   - component: {fileID: 1063134479097776138}
+  - component: {fileID: 7993672497125325261}
   m_Layer: 7
   m_Name: HeavyBandit 1
   m_TagString: Enemy
@@ -252,6 +253,19 @@ MonoBehaviour:
   onHeal:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7993672497125325261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463392086428580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f30e0c63c994fd04b8824b9682ecd35f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathHandler
+  scoreValue: 10
 --- !u!1 &442136155983573549
 GameObject:
   m_ObjectHideFlags: 0
