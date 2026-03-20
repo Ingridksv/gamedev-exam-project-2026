@@ -22,6 +22,7 @@ public class WaveSpawner : MonoBehaviour
     private int m_currentWave = 0;
     private List<GameObject> m_aliveEnemies = new List<GameObject>();
     private bool m_spawning = false;
+    private bool hasWon = false;
 
     void Start()
     {
@@ -39,6 +40,13 @@ public class WaveSpawner : MonoBehaviour
         if (m_aliveEnemies.Count == 0 && m_currentWave < m_waves.Length)
         {
             StartCoroutine(StartWave());
+        }
+        
+        //
+        if (!hasWon && m_currentWave >= m_waves.Length && m_aliveEnemies.Count == 0)
+        {
+            hasWon = true; 
+            GameManager.Instance.WinGame();
         }
     }
 
