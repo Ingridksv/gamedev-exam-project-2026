@@ -1,6 +1,6 @@
-# 🎮 GameDev 2D Arena Combat
+# 🎮 GameDev 2D Arena Combat (SoundEffects Branch)
 
-> ⚠️ Note: Active development has continued in the `SoundEffects` branch, which includes additional features such as sound effects, UI improvements, and gameplay polish that are not yet merged into `main`.
+> ⚠️ **Note:** This branch contains additional development beyond the submitted version, including sound effects, UI improvements, and overall gameplay polish.
 
 ---
 
@@ -8,7 +8,7 @@
 
 This project is a **2D top-down arena combat game** developed in Unity.
 
-The player fights waves of enemies in a closed arena using melee combat and dodge mechanics. The goal is to survive increasingly difficult waves and defeat the final boss.
+The player fights waves of enemies in a closed arena using melee combat and dodge mechanics. This branch represents an extended version of the project with improved feedback, audio, and UI systems.
 
 ---
 
@@ -49,10 +49,24 @@ The player fights waves of enemies in a closed arena using melee combat and dodg
 - Game Over / Win screens  
 - Dynamic updates via events  
 
-### Feedback (Juice)
+---
+
+## 🔊 Sound & Feedback Improvements
+
+This branch introduces additional polish through:
+
+- Background music 
+- Game over audio  
+- Improved feedback through visuals 
+- Better player experience through combined UI and sound  
+
+---
+
+## ✨ Feedback (Juice)
+
 - Visual feedback when taking damage (blinking)  
 - UI updates  
-- Sound effects  
+- Sound effects for actions and game states  
 
 ---
 
@@ -73,34 +87,42 @@ The project is built using Unity’s **component-based architecture**:
 - Unity Events  
 - Coroutines (IEnumerator)  
 - Physics (Colliders & Triggers)  
+- Audio system  
 
 ---
 
 ## ⚙️ Controls
 
-| Action | Key |
-|------|-----|
-| Move | WASD |
+| Action | Input |
+|--------|-------|
+| Move   | WASD  |
 | Attack | Left Mouse Button |
-| Dodge | Right Mouse Button |
+| Dodge  | Right Mouse Button |
 
 ---
 
 ## 👥 Contributors
 
-- Bubberr
+- Bubberr 
 - Ingridksv
+
+---
+
+## 🚀 Improvements (Future Work)
+
+- Settings menu (toggle UI + audio control)  
+- More advanced AI (Behavior Trees)  
+- Improved boss mechanics  
+- Additional visual and audio feedback  
 
 ---
 
 ## 🧠 Design Considerations
 
-The project focuses on:
+This version focuses on improving **player experience** through:
 
-- Simple but solid mechanics  
-- Clear gameplay loop  
-- Responsive player feedback  
-
-We chose simple systems (e.g. FSM over Behavior Trees) to ensure a stable and polished experience within the project scope.
+- Better feedback (audio + visuals)  
+- Clear UI communication  
+- Responsive combat feel 
 
 ---

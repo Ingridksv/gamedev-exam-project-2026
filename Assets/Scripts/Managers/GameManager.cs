@@ -6,11 +6,15 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public int score = 0;
+    public AudioClip gameOverSound;
+    private AudioSource m_audioSource;
     public bool gameEnded = false;
 
     void Start()
     {
         Debug.Log("GameManager is active");
+        
+        m_audioSource = GetComponent<AudioSource>();
 
         UIManager.Instance.UpdateScore(score);
     }
@@ -37,9 +41,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("GAME OVER called");
         if (gameEnded) return;
         
         gameEnded = true;
+        m_audioSource.PlayOneShot(gameOverSound);
         Time.timeScale = 0f;
         
         UIManager.Instance.ShowGameOver();
