@@ -10,9 +10,17 @@ public class UIManager : MonoBehaviour
     public GameObject winPanel;
     public TextMeshProUGUI healthText;
 
-    void Awake()
+    private void Awake()
     {
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (SettingsManager.Instance != null && healthText != null)
+        {
+            healthText.gameObject.SetActive(SettingsManager.Instance.showHP);
+        }
     }
 
     public void UpdateScore(int score)
@@ -22,7 +30,10 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealth(int currentHealth, int maxHealth)
     {
-        healthText.text = $"HP: {currentHealth}/{maxHealth}";
+        if (healthText != null)
+        {
+            healthText.text = $"HP: {currentHealth}/{maxHealth}";
+        }
     }
 
     public void ShowGameOver()
@@ -34,5 +45,4 @@ public class UIManager : MonoBehaviour
     {
         winPanel.SetActive(true);
     }
-    
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class HealthUIBinder : MonoBehaviour
@@ -16,12 +15,15 @@ public class HealthUIBinder : MonoBehaviour
 
     void UpdateUIText()
     {
-        if (UIManager.Instance != null)
+        if (UIManager.Instance != null && SettingsManager.Instance != null)
         {
-         UIManager.Instance.UpdateHealth(
-             health.GetHealth(),
-             health.maxHealth
-             );   
+            if (SettingsManager.Instance.showHP)
+            {
+                UIManager.Instance.UpdateHealth(
+                    health.GetHealth(),
+                    health.maxHealth
+                );
+            }
         }
     }
 }
