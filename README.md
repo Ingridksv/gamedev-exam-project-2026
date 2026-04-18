@@ -1,4 +1,4 @@
-# 🎮 GameDev 2D Arena Combat (SoundEffects Branch)
+# 🎮 GameDev 2D Arena Combat
 
 > ⚠️ **Note:** This branch contains additional development beyond the submitted version, including sound effects, UI improvements, and overall gameplay polish.
 
