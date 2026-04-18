@@ -19,13 +19,12 @@ public class Health : MonoBehaviour, IAttackable
     {
         if (m_currentHealth <= 0) return;
 
-        HeroKnight hero = GetComponent<HeroKnight>();
-        if (hero != null)
-            amount = Mathf.RoundToInt(amount * hero.GetDamageMultiplier());
-
         m_currentHealth -= amount;
+        m_currentHealth = Mathf.Max(m_currentHealth, 0);
+        
         onHurt.Invoke();
-        Debug.Log("Player HP: " + m_currentHealth);
+     //   Debug.Log($"{gameObject.name} took {amount} damage. HP: {m_currentHealth}");
+        Debug.Log($"{gameObject.name} took {amount} damage");
 
         if (m_currentHealth <= 0)
             onDeath.Invoke();
