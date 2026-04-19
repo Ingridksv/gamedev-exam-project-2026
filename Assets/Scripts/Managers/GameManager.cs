@@ -42,9 +42,10 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("GAME OVER called");
         if (gameEnded) return;
         
+        Debug.Log("GAME OVER called");
+
         gameEnded = true;
         m_audioSource.PlayOneShot(gameOverSound);
         Time.timeScale = 0f;
