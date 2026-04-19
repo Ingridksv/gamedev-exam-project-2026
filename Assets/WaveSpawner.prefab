@@ -44,25 +44,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93d2c07e00d9621419cb194390d466fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  m_healPrefab: {fileID: 670929780460470218, guid: ea396e9739d5e60498bc94d80b41c2d3, type: 3}
+  m_healSpawnPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   m_waves:
   - waveName: Wave1
     enemyPrefabs:
     - {fileID: 1463392086428580, guid: 822a878a434c46e4aa856ab794f120d0, type: 3}
     baseEnemyCount: 3
     timeBetweenSpawns: 0
+    spawnHealAfterWave: 0
   - waveName: Wave2
     enemyPrefabs:
     - {fileID: 1463392086428580, guid: 822a878a434c46e4aa856ab794f120d0, type: 3}
     baseEnemyCount: 3
     timeBetweenSpawns: 0
+    spawnHealAfterWave: 0
   - waveName: Wave3
     enemyPrefabs:
     - {fileID: 1463392086428580, guid: 822a878a434c46e4aa856ab794f120d0, type: 3}
     baseEnemyCount: 3
     timeBetweenSpawns: 0
+    spawnHealAfterWave: 0
   m_spawnPoints:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   m_timeBetweenWaves: 5
   m_enemyCountMultiplier: 1.5
+  m_bossPrefab: {fileID: 0}

@@ -11,14 +11,19 @@ public class WaveSpawner : MonoBehaviour
         public GameObject[] enemyPrefabs;  // drag different enemy types here
         public int baseEnemyCount;
         public float timeBetweenSpawns = 0.5f;
+
+        public bool spawnHealAfterWave;
     }
 
+    [SerializeField] private GameObject m_healPrefab;
+    [SerializeField] Transform[] m_healSpawnPoints;
     [SerializeField] Wave[] m_waves;
     [SerializeField] Transform[] m_spawnPoints;
     [SerializeField] float m_timeBetweenWaves = 5f;
     [SerializeField] float m_enemyCountMultiplier = 1.5f; // exponential growth
     [SerializeField] GameObject m_bossPrefab;
 
+    private int m_lastHealWave = -1;
     private int m_currentWave = 0;
     private List<GameObject> m_aliveEnemies = new List<GameObject>();
     private bool m_spawning = false;
@@ -39,10 +44,19 @@ public class WaveSpawner : MonoBehaviour
         // Start next wave when all enemies are dead
         if (m_aliveEnemies.Count == 0 && m_currentWave < m_waves.Length)
         {
+            int completedWave = m_currentWave -1;
+            
+            if (completedWave >= 0 &&
+                completedWave != m_lastHealWave &&
+                m_waves[completedWave].spawnHealAfterWave)
+            {
+                SpawnHeal();
+                m_lastHealWave = completedWave;
+            }
+            
             StartCoroutine(StartWave());
         }
         
-        //
         if (!hasWon && m_currentWave >= m_waves.Length && m_aliveEnemies.Count == 0)
         {
             hasWon = true; 
@@ -62,6 +76,9 @@ public class WaveSpawner : MonoBehaviour
         if (isFinalWave && m_bossPrefab != null)
         {
             Debug.Log("Final wave — spawning boss!");
+
+            SpawnHeal();
+            
             Transform spawnPoint = m_spawnPoints[Random.Range(0, m_spawnPoints.Length)];
             GameObject boss = Instantiate(m_bossPrefab, spawnPoint.position, Quaternion.identity);
             m_aliveEnemies.Add(boss);
@@ -95,5 +112,15 @@ public class WaveSpawner : MonoBehaviour
 
         GameObject enemy = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         m_aliveEnemies.Add(enemy);
+    }
+
+    void SpawnHeal()
+    {
+        if (m_healPrefab == null || m_healSpawnPoints.Length == 0) return;
+
+        Transform spawnPoint = m_healSpawnPoints[Random.Range(0, m_healSpawnPoints.Length)];
+        Instantiate(m_healPrefab, spawnPoint.position, Quaternion.identity);
+        
+        Debug.Log("Heal spawned");
     }
 }
