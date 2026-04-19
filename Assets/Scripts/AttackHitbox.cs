@@ -53,7 +53,18 @@ public class AttackHitbox : MonoBehaviour
         {
             // Debug.Log("Hitbox hit: " + root.name);
             Debug.Log("Hit: " + root.name);
-            target.TakeDamage(damage);
+            int finalDamage = damage;
+
+            if (targetLayer == "Enemy")
+            {
+                finalDamage = Mathf.RoundToInt(damage * GameSettings.Instance.playerDamageMultiplier);
+            }
+            else if (targetLayer == "Player")
+            {
+                finalDamage = Mathf.RoundToInt(damage * GameSettings.Instance.enemyDamageMultiplier);
+            }
+
+            target.TakeDamage(finalDamage);
         }
     }
 }
